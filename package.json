@@ -4,9 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "node scripts/copy-sqlite.mjs && next dev",
-    "build": "node scripts/copy-sqlite.mjs && next build && node scripts/fix-export-segments.mjs && node scripts/build-sw.mjs",
+    "build": "node scripts/copy-sqlite.mjs && next build && node scripts/fix-export-segments.mjs && node scripts/build-sw.mjs && node scripts/post-build.mjs",
     "preview": "node scripts/serve.mjs",
-    "deploy": "pnpm build && wrangler deploy",
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
@@ -37,13 +36,6 @@
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vitest": "^5.0.2",
-    "wrangler": "^4.140.0"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "workerd"
-    ]
+    "vitest": "^5.0.2"
   }
 }

@@ -11,24 +11,19 @@ Next.js 16 static export · SQLite WASM (`opfs-sahpool`) · TanStack Query · Pe
 | Command | What it does |
 |---|---|
 | `pnpm dev` | Development server |
-| `pnpm build` | Static export to `out/` + offline service worker |
-| `pnpm deploy` | Build + deploy to Cloudflare Workers (see below) |
+| `pnpm build` | Static export to `out/` + offline service worker + CNAME |
 | `pnpm preview` | Serve `out/` locally like a static host (http://localhost:4173) |
 | `pnpm typecheck` · `pnpm lint` · `pnpm test` | Checks (lint also enforces the architecture) |
 
-`pnpm build` = copy SQLite WASM into `public/sqlite` → `next build` → flatten segment files (Windows bug workaround) → generate `out/sw.js` precaching every file.
+`pnpm build` = copy SQLite WASM into `public/sqlite` → `next build` → flatten segment files (Windows bug workaround) → generate `out/sw.js` precaching every file → create `.nojekyll` + `CNAME` in `out/`.
 
 ## Deploying
 
-`out/` is a plain static site served by Cloudflare Workers Static Assets. The custom domain `mivehhesab.ir` is attached to the Worker `mivehhesabb`. HTTPS is required for installation and on-device storage.
+The app is deployed to **GitHub Pages** via GitHub Actions. Every push to `main` triggers a build and deploy. The custom domain `mivehhesab.ir` is configured via `CNAME` in the output.
 
-```powershell
-pnpm deploy   # build + deploy to Cloudflare Workers
-```
+## Deploying
 
-`pnpm deploy` = `pnpm build` (static export to `out/`) → `wrangler deploy` (uploads to Cloudflare). First run requires `npx wrangler login` (browser OAuth).
-
-For a sub-path (e.g. GitHub Pages `/<repo>`), build with `NEXT_PUBLIC_BASE_PATH=/<repo>`. Serve `sw.js` with `Cache-Control: no-cache` so updates are noticed (already configured in `public/_headers`).
+The app is deployed to **GitHub Pages** via GitHub Actions. Every push to `main` triggers a build and deploy. The custom domain `mivehhesab.ir` is configured via `CNAME` in the output.
 
 Storage is per origin (scheme + host + port): each address has its own separate data.
 

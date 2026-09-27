@@ -53,10 +53,8 @@ next-env.d.ts
 # deploy bundle
 /deploy/
 
-# cloudflare workers
-/.wrangler/
+# open-next build artifacts
 /.open-next/
-.wrangler/
 
 # claude
 /.claude/
