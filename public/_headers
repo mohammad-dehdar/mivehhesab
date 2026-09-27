@@ -1,0 +1,9 @@
+# Cloudflare static hosting headers (not served as a file).
+# The service worker must always be re-checked so updates reach installed apps.
+/sw.js
+  Cache-Control: no-cache
+  Content-Type: text/javascript; charset=utf-8
+
+# Next.js build output is content-hashed and never changes.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable

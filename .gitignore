@@ -39,3 +39,24 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local data
+/data/
+/backups/
+
+# generated
+/public/sqlite/
+
+# static export
+/out/
+
+# deploy bundle
+/deploy/
+
+# cloudflare workers
+/.wrangler/
+/.open-next/
+.wrangler/
+
+# claude
+/.claude/

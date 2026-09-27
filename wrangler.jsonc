@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Must match the existing Worker so the custom domain (mivehhesab.ir) stays attached.
+  "name": "mivehhesabb",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./out",
+  },
+}
